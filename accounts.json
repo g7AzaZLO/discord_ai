@@ -3,14 +3,14 @@
         {
             "token": "YOUR-DISCORD-TOKEN",
             "user_id": "YOUR-USER-ID",
-            "channel_id": "YOUR-CHAT-ID",
+            "channel_id": "1265145085368991805",
             "headers": {
               "authority": "discord.com",
               "accept": "*/*",
               "accept-language": "en-US,en;q=0.9",
               "content-type": "application/json",
               "origin": "https://discord.com",
-              "referer": "https://discord.com/channels/YOUR-CHANNAL-ID/YOUR-CHAT-ID",
+              "referer": "https://discord.com/channels/1236933703251394570/1265145085368991805",
               "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"",
               "sec-ch-ua-mobile": "?0",
               "sec-ch-ua-platform": "\"macOS\"",
@@ -33,14 +33,14 @@
         {
             "token": "...",
             "user_id": "...",
-            "channel_id": "...",
+            "channel_id": "1265145085368991805",
             "headers": {
                 "authority": "discord.com",
                 "accept": "*/*",
                 "accept-language": "en-IE,en;q=0.8",
                 "content-type": "application/json",
                 "origin": "https://discord.com",
-                "referer": "https://discord.com/channels/.../...",
+                "referer": "https://discord.com/channels/1236933703251394570/1265145085368991805",
                 "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Edge\";v=\"120\"",
                 "sec-ch-ua-mobile": "?0",
                 "sec-ch-ua-platform": "\"Windows\"",
