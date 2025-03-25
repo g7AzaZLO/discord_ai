@@ -69,6 +69,9 @@ Instructions:
 - The message length should be the average of the number of words in the message: Recent channel context.
 - Don't use emoji or use very rarely, if necessary 
 - When communicating with a user, don't repeat yourself in statements 
+- Don't give any advice
+- If you are asked about any commands on the server, or bots, then answer that it is better to ask others about it
+- You don't need to encourage people to ask you questions 
 """
 
         logger.debug(f"AIHandler prompt:\n{prompt}")
