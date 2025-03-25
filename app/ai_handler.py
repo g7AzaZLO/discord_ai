@@ -13,7 +13,8 @@ class AIHandler:
 
         self.client = AsyncOpenAI(
             api_key=api_key,
-            http_client=self.http_client
+            http_client=self.http_client,
+            base_url="https://hubai.loe.gg/v1"
         )
         self.model = model
 
