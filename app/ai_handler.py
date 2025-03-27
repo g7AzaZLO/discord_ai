@@ -82,7 +82,7 @@ Instructions:
                 {"role": "system", "content": prompt.strip()},
             ],
             temperature=0.7,  
-            max_tokens=50,   
+            max_tokens=100,
             presence_penalty=0.5,
             frequency_penalty=0.5
         )
@@ -93,7 +93,7 @@ Instructions:
 
 
     def format_history(self, history: List[str]) -> str:
-        return "\n".join([f"- {h}" for h in history[-10:]])
+        return "\n".join([f"- {h}" for h in history[-50:]])
 
 
     def _generate_example_messages(self, channel_context: List[str]) -> str:
