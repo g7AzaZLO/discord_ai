@@ -35,7 +35,7 @@ class DiscordMessageSender:
         url = f"{self.BASE_URL}/channels/{self.account.channel_id}/messages"
         params = {"limit": limit}
         try:
-            resp = requests.get(url, headers=self.headers, params=params, timeout=10, proxies=self.proxies)
+            resp = requests.get(url, headers=self.headers, params=params, timeout=30, proxies=self.proxies)
             resp.raise_for_status()
             data = resp.json()
             logger.debug(f"Received {len(data)} messages from Discord.")
@@ -55,7 +55,7 @@ class DiscordMessageSender:
                     typing_url, 
                     headers=self.headers, 
                     data='',
-                    timeout=10, 
+                    timeout=30,
                     proxies=self.proxies
                 )
                 resp.raise_for_status()
@@ -95,7 +95,7 @@ class DiscordMessageSender:
             json_data["message_reference"] = reply_to
 
         try:
-            resp = requests.post(url, headers=self.headers, json=json_data, timeout=10, proxies=self.proxies)
+            resp = requests.post(url, headers=self.headers, json=json_data, timeout=30, proxies=self.proxies)
             resp.raise_for_status()
             logger.debug(f"send_message successful: status_code={resp.status_code}")
             return resp

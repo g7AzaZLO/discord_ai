@@ -82,7 +82,7 @@ Instructions:
                 {"role": "system", "content": prompt.strip()},
             ],
             temperature=0.7,  
-            max_tokens=100,
+            max_tokens=80,
             presence_penalty=0.5,
             frequency_penalty=0.5
         )
