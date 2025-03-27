@@ -1,5 +1,5 @@
 openai_api_key = ""
-openai_model = "gpt-3.5-turbo"
+openai_model = "gpt-4o-mini"
 
 
 # You can use the proxy if your local IP is from the blocked country in that format: http://username:password@ip:port. Leave "NONE" if you're not going to use it.

@@ -97,7 +97,7 @@ Instructions:
 
 
     def _generate_example_messages(self, channel_context: List[str]) -> str:
-        examples = random.sample(channel_context, min(5, len(channel_context))) if channel_context else []
+        examples = random.sample(channel_context, min(50, len(channel_context))) if channel_context else []
         formatted_examples = "\n".join([f"{idx + 1}) \"{msg}\"" for idx, msg in enumerate(examples)])
         return formatted_examples if formatted_examples else "1) \"hello\""
 

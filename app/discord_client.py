@@ -130,7 +130,7 @@ class DiscordChatMonitor:
                 logger.debug(f"Global sleep for {delay:.1f} seconds.")
                 await asyncio.sleep(delay)
 
-                raw_msgs = self.sender.get_channel_messages(limit=50)
+                raw_msgs = self.sender.get_channel_messages(limit=100)
                 if not raw_msgs:
                     logger.debug("No messages received from Discord.")
                     continue
@@ -159,7 +159,7 @@ class DiscordChatMonitor:
                         personal_ctx = DialogContext(user_id=dialog_msg.author_id, messages=[])
 
                     personal_texts = [m.content for m in personal_ctx.messages]
-                    channel_context = [msg['content'] for msg in raw_msgs[-20:]]
+                    channel_context = [msg['content'] for msg in raw_msgs[-80:]]
 
                     reply_text = await self.ai_handler.generate_response(
                         personal_history=personal_texts,
@@ -201,7 +201,7 @@ class DiscordChatMonitor:
                 if not to_respond:
                     if random.random() < 0.05:
                         logger.debug("Randomly decided to post a 'no-reply' message (priority 4).")
-                        channel_context = [msg['content'] for msg in raw_msgs[-20:]]
+                        channel_context = [msg['content'] for msg in raw_msgs[-80:]]
                         reply_text = await self.ai_handler.generate_response(
                             personal_history=[],  
                             channel_context=channel_context,
