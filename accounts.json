@@ -29,29 +29,6 @@
                 "password": "password",
                 "protocol": "http"
             }
-          },
-        {
-            "token": "...",
-            "user_id": "...",
-            "channel_id": "1265145085368991805",
-            "headers": {
-                "authority": "discord.com",
-                "accept": "*/*",
-                "accept-language": "en-IE,en;q=0.8",
-                "content-type": "application/json",
-                "origin": "https://discord.com",
-                "referer": "https://discord.com/channels/1236933703251394570/1265145085368991805",
-                "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Edge\";v=\"120\"",
-                "sec-ch-ua-mobile": "?0",
-                "sec-ch-ua-platform": "\"Windows\"",
-                "sec-fetch-dest": "empty",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-site": "same-origin",
-                "user-agent": "...",
-                "x-debug-options": "bugReporterEnabled",
-                "x-discord-locale": "en-IE",
-                "x-discord-timezone": "Europe/Dublin"
-            }
-        }
+          }
     ]
   }
