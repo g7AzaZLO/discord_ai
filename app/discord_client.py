@@ -121,9 +121,10 @@ class DiscordChatMonitor:
         self.processed_messages = set()
         logger.debug(f"DiscordChatMonitor initialized for user_id={account.user_id}")
 
-
     async def start_monitoring(self):
         logger.info(f"[{self.account.user_id}] Start monitoring loop.")
+        bot_recent_messages = []  # Список последних сообщений бота
+
         while True:
             try:
                 delay = random.uniform(*self.poll_interval_range)
@@ -159,14 +160,19 @@ class DiscordChatMonitor:
                         personal_ctx = DialogContext(user_id=dialog_msg.author_id, messages=[])
 
                     personal_texts = [m.content for m in personal_ctx.messages]
-                    channel_context = [msg['content'] for msg in raw_msgs[-80:]]
+                    channel_context = [msg['content'] for msg in raw_msgs[-50:]]
 
                     reply_text = await self.ai_handler.generate_response(
                         personal_history=personal_texts,
                         channel_context=channel_context,
                         current_message=dialog_msg.content,
-                        is_reply=True
+                        is_reply=True,
+                        bot_recent_messages=bot_recent_messages  # Передаем последние сообщения бота
                     )
+
+                    # Обновляем список последних сообщений бота
+                    bot_recent_messages.append(reply_text)
+                    bot_recent_messages = bot_recent_messages[-10:]
 
                     reply_payload = {
                         "message_id": dialog_msg.id,
@@ -176,7 +182,7 @@ class DiscordChatMonitor:
 
                     bot_msg_id = f"bot_{time.time()}"
                     self.db.save_message(
-                        self.account.user_id, 
+                        self.account.user_id,
                         DialogMessage(
                             id=bot_msg_id,
                             content=reply_text,
@@ -188,7 +194,7 @@ class DiscordChatMonitor:
                     )
 
                     self.db.save_log(
-                        self.account.user_id, 
+                        self.account.user_id,
                         f"[SEND] Replied to user {dialog_msg.author_id}, msgId={dialog_msg.id}\nContent={reply_text}"
                     )
 
@@ -201,13 +207,21 @@ class DiscordChatMonitor:
                 if not to_respond:
                     if random.random() < 0.05:
                         logger.debug("Randomly decided to post a 'no-reply' message (priority 4).")
-                        channel_context = [msg['content'] for msg in raw_msgs[-80:]]
+                        channel_context = [msg['content'] for msg in raw_msgs[-50:]]
                         reply_text = await self.ai_handler.generate_response(
-                            personal_history=[],  
+                            personal_history=[],
                             channel_context=channel_context,
                             current_message="",
-                            is_reply=False
+                            is_reply=False,
+                            bot_recent_messages=bot_recent_messages
+                            # Передаем последние сообщения бота для случайных сообщений
                         )
+
+                        # Обновляем список последних сообщений бота
+                        bot_recent_messages.append(reply_text)
+                        if len(bot_recent_messages) > 10:
+                            bot_recent_messages = bot_recent_messages[-10:]
+
                         await self.sender.send_message(reply_text, reply_to=None)
 
                         bot_msg_id = f"bot_{time.time()}"
