@@ -13,16 +13,11 @@
 
 ## Installation
 
-1. **Clone the repository:**
-    ```bash
-    git clone https://github.com/ENbanned/discord_ai.git
-    cd discord_ai
-    ```
-
 2. **Install dependencies:**
     ```bash
-    python -m venv venv
-    venv\scripts\activate
+   sudo apt install python3-venv
+    python3 -m venv vvv
+    source vvv/bin/activate
     pip install -r requirements.txt
     ```
 
@@ -31,7 +26,7 @@
 1. **Configure `config.py`:**
     ```python
     openai_api_key = "YOUR_OPENAI_API_KEY"
-    openai_model = "gpt-3.5-turbo"
+    openai_model = "gpt-4o-mini"
 
     proxy_for_openai_api = "None"  # Use format: http://username:password@ip:port or "None"
 
@@ -72,15 +67,7 @@
                     "password": "password",
                     "protocol": "http"
                 }
-            },
-            {
-                "token": "...",
-                "headers": {
-                    "..."
-                }
-
             }
-
         ]
     }
     ```
@@ -105,13 +92,5 @@
 - `accounts.json` – Discord accounts configuration.
 - `config.py` – Project settings.
 - `main.py` – Entry point to run the bot.
-
-## License
-
-MIT License. See [LICENSE](LICENSE) for details.
-
-## Contact
-
-Telegram: [@enbanned](https://t.me/enbanned)
 
 
